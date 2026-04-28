@@ -4,7 +4,30 @@
 
 Replace your annual PowerPoint compliance training with an interactive web app that tracks completion, generates PDF certificates, emails confirmations, and produces the audit evidence your compliance frameworks require — all without leaving Google Workspace and without standing up new infrastructure.
 
-![Welcome screen](assets/screenshots/01_welcome.png)
+<img src="assets/screenshots/01_welcome.png" width="600" alt="Welcome screen">
+
+---
+
+## Screenshots
+
+<table>
+<tr>
+<td><img src="assets/screenshots/02_module_intro.png" width="400" alt="Module intro — Foundations"></td>
+<td><img src="assets/screenshots/03_data_card_grid.png" width="400" alt="Data handling module"></td>
+</tr>
+<tr>
+<td><img src="assets/screenshots/04_scenario_card.png" width="400" alt="Interactive scenario cards"></td>
+<td><img src="assets/screenshots/05_privilege_cards.png" width="400" alt="Privileged FTI access cards"></td>
+</tr>
+<tr>
+<td><img src="assets/screenshots/06_prs_signature.png" width="400" alt="Personal Responsibility Statement"></td>
+<td><img src="assets/screenshots/07_completion_certificate.png" width="400" alt="Completion certificate"></td>
+</tr>
+<tr>
+<td><img src="assets/screenshots/08_tracker_sheet.png" width="400" alt="Tracker spreadsheet"></td>
+<td><img src="assets/screenshots/09_email_confirmation.png" width="400" alt="Email confirmation with certificate"></td>
+</tr>
+</table>
 
 ---
 
