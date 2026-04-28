@@ -15,9 +15,9 @@ Most agencies handle annual security awareness training the same way: a slide de
 - **Auditors** can't verify who actually read the material vs. who just clicked through
 - **Information security teams** have no central record of who's current and who's overdue
 - **Employees** get a slide deck that reads like a legal disclaimer and forget it within a week
-- **Frameworks like IRS Pub 1075, CMS ARC-AMPE, HIPAA, and state privacy laws** have specific Awareness & Training (AT) control requirements that slide-deck training meets only on paper
+- **NIST 800-53 Awareness and Training (AT) controls** — the baseline that virtually all federal compliance frameworks derive their training requirements from — have specific evidence requirements that slide-deck training meets only on paper
 
-For agencies handling Federal Tax Information (FTI), Protected Health Information (PHI), Social Security Administration (SSA) data, and Personally Identifiable Information (PII), this gap is a real audit finding waiting to happen.
+For agencies handling regulated data — Personally Identifiable Information (PII), Federal Tax Information (FTI), Protected Health Information (PHI), Social Security Administration (SSA) data, Criminal Justice Information (CJIS), Controlled Unclassified Information (CUI) — this gap is a real audit finding waiting to happen.
 
 ## The solution
 
@@ -128,15 +128,24 @@ With automation, the system runs itself. The security team's only manual touch i
 
 ## Compliance frameworks supported
 
-The training content is structured to satisfy AT (Awareness & Training) control requirements in:
+The training implements **NIST SP 800-53 Awareness and Training (AT) family controls** — the baseline that virtually all federal compliance frameworks derive their training requirements from. Specifically:
 
-- **IRS Publication 1075** — including the AT-3 control for privileged users with FTI access (DBAs, system administrators, developers)
-- **CMS ARC-AMPE** — annual security awareness training requirements for state agencies handling Medicaid data
-- **HIPAA Security Rule** — § 164.308(a)(5) workforce training and awareness
-- **State privacy laws** (e.g., the Privacy Act of 1974 at the federal level; state-specific state privacy act equivalents)
-- **Internal Revenue Code §§ 6103, 7213, 7213A, 7431** — disclosure prohibitions and personal liability
+- **AT-1** Policy and Procedures — the underlying training policy reference
+- **AT-2** Literacy Training and Awareness — annual baseline training for all personnel
+- **AT-3** Role-Based Training — additional content for privileged users (DBAs, system administrators, developers, anyone with backend access to sensitive systems)
+- **AT-4** Training Records — retained acknowledgments, completion logs, certificates, and audit trail
 
-The Personal Responsibility Statement (PRS) at the end of training references each of these frameworks explicitly, creating an auditable record that the user was advised of their obligations under each.
+Because most federal regulatory frameworks inherit their training requirements from 800-53, this implementation is portable across regulatory contexts — including:
+
+- Tax data handling (IRS frameworks)
+- Healthcare data and HIPAA Security Rule workforce training
+- Medicaid program requirements (CMS)
+- Criminal justice information (CJIS Security Policy)
+- Education records (FERPA)
+- Controlled Unclassified Information (DFARS, FedRAMP, StateRAMP)
+- State privacy laws — typically 800-53-aligned
+
+The Personal Responsibility Statement (PRS) at the end of training is editable per agency to reference the specific framework citations applicable to your context, creating an auditable record that the user was advised of their obligations under each.
 
 ---
 

@@ -63,12 +63,14 @@ The Personal Responsibility Statement (PRS) is in `apps_script/Code.gs` at the t
 ```javascript
 const PRS_STATEMENTS = [
   'I have completed the [agency] Annual Sensitive Data Training...',
-  'I have been advised of the Privacy Act of 1974, applicable state privacy laws, HIPAA, IRS Publication 1075, and Internal Revenue Code §§ 6103, 7213, 7213A, and 7431.',
+  'I have been advised of the federal and state laws applicable to my access — which may include the Privacy Act of 1974, applicable state privacy laws, HIPAA Security Rule, and any sector-specific frameworks (tax data, healthcare, criminal justice, education records, or controlled unclassified information) governing the data I handle.',
   // ... etc
 ];
 ```
 
 Edit each statement to reference your specific frameworks. Aim for **5 statements** total — short enough that users will actually read them, long enough to cover the core obligations.
+
+The default PRS deliberately uses inclusive framing ("which may include...") so that an out-of-the-box deployment is safe across multiple regulatory contexts. Replace the inclusive language with explicit citations once you know which frameworks apply to your agency.
 
 ## Adding or removing modules
 

@@ -17,13 +17,56 @@ const CONFIG = {
   ISSUING_AUTHORITY: 'Information Security Office'  // shown in the certificate footer "Issuing Authority" card
 };
 
+// ============================================================================
+// TEST MODE — DEVELOPMENT / DEMO ONLY
+// ============================================================================
+// Set TEST_MODE.enabled = true to allow form submission on personal Gmail accounts
+// or in any context where Session.getActiveUser().getEmail() returns empty.
+//
+// In production, this MUST be set to false. Workspace SSO is what makes identity
+// capture trustworthy for compliance use. Allowing a fake email in production
+// breaks the audit trail and defeats the entire point of the system.
+//
+// When TEST_MODE.enabled is true, the script will use TEST_MODE.fallbackEmail
+// for any caller whose Workspace identity cannot be verified.
+//
+// Use cases for TEST_MODE:
+//   - Demo deployments on personal Gmail
+//   - Local testing while building out the rest of the system
+//   - Recording portfolio screenshots without a Workspace subscription
+//
+// REMOVE OR DISABLE BEFORE ANY REAL ROLLOUT.
+const TEST_MODE = {
+  enabled: false,
+  fallbackEmail: 'test@your-agency.gov'
+};
+
+function resolveUserEmail() {
+  let email = '';
+  try {
+    email = Session.getActiveUser().getEmail() || '';
+  } catch (e) {
+    // Session unavailable in some contexts; fall through.
+  }
+  if (!email && TEST_MODE.enabled) {
+    return TEST_MODE.fallbackEmail;
+  }
+  return email;
+}
+
 const PRS_STATEMENTS = [
-  'I have completed the ' + CONFIG.AGENCY_NAME + ' Annual Sensitive Data Training and reviewed the requirements for safeguarding PII, FTI, PHI, and SSA data.',
-  'I have been advised of the Privacy Act of 1974, applicable state privacy laws, HIPAA, IRS Publication 1075, and Internal Revenue Code §§ 6103, 7213, 7213A, and 7431.',
+  'I have completed the ' + CONFIG.AGENCY_NAME + ' Annual Sensitive Data Training and reviewed the requirements for safeguarding the categories of regulated data I handle in my role.',
+  'I have been advised of the federal and state laws applicable to my access — which may include the Privacy Act of 1974, applicable state privacy laws, HIPAA Security Rule, and any sector-specific frameworks (tax data, healthcare, criminal justice, education records, or controlled unclassified information) governing the data I handle.',
   'I will not access, use, or disclose sensitive data except as authorized by my role and required to perform my official duties.',
   'My access to sensitive systems is conditional on completing annual recertification, and I will report any suspected incident to the Information Security Office promptly.',
   'I understand that this acknowledgment is retained as part of the agency\'s safeguard records and may be reviewed during federal and state audits.'
 ];
+
+// CUSTOMIZATION NOTE:
+// If your agency handles regulated data under a specific framework (IRS Pub 1075,
+// CJIS Security Policy, FERPA, HIPAA, FedRAMP, etc.), edit the PRS_STATEMENTS above
+// to reference the specific statute or framework that applies. Auditors look for the
+// PRS to explicitly cite the framework the user is being held accountable to.
 
 
 // ============================================================================
@@ -31,11 +74,81 @@ const PRS_STATEMENTS = [
 // ============================================================================
 
 function doGet(e) {
-  return HtmlService.createTemplateFromFile('Index')
+  const template = HtmlService.createTemplateFromFile('Index');
+
+  // Populate all template scriptlets used in Index.html.
+  const userEmail = resolveUserEmail();
+  template.userEmail = userEmail;
+  template.prsAcknowledgments = PRS_STATEMENTS;
+
+  // Look up most recent completion for this user, if any.
+  const priorCompletion = lookupLastCompletion(userEmail);
+  template.alreadyCompleted = priorCompletion !== null;
+  template.lastCompletion = priorCompletion || { trainingDate: '', version: '', nextDue: '' };
+
+  return template
     .evaluate()
     .setTitle(CONFIG.AGENCY_NAME + ' Annual Sensitive Data Training')
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
     .addMetaTag('viewport', 'width=device-width, initial-scale=1');
+}
+
+/**
+ * Look up the most recent completion record for a given user.
+ * Returns { trainingDate, version, nextDue } or null if no record found.
+ *
+ * Reads from the bound spreadsheet's first sheet. Expects the schema documented
+ * in docs/SHEET_SCHEMA.md (B=email, I=training date, J=version, O=next due).
+ *
+ * If the script isn't bound to a spreadsheet (e.g., during local Apps Script
+ * testing without a sheet), returns null silently.
+ */
+function lookupLastCompletion(userEmail) {
+  if (!userEmail) return null;
+
+  try {
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    if (!ss) return null;
+
+    const sheet = ss.getSheetByName('Training Tracker') || ss.getSheets()[0];
+    if (!sheet) return null;
+
+    const lastRow = sheet.getLastRow();
+    if (lastRow < 2) return null;  // header only, no data
+
+    // Pull columns A through R for all data rows
+    const data = sheet.getRange(2, 1, lastRow - 1, 18).getValues();
+
+    // Walk rows latest-first, find the most recent record for this email
+    const targetEmail = String(userEmail).toLowerCase().trim();
+    for (let i = data.length - 1; i >= 0; i--) {
+      const rowEmail = String(data[i][1] || '').toLowerCase().trim();
+      if (rowEmail !== targetEmail) continue;
+
+      const trainingDate = data[i][8];   // column I
+      const version = data[i][9];        // column J
+      const nextDue = data[i][14];       // column O
+
+      return {
+        trainingDate: formatDateForDisplay(trainingDate),
+        version: String(version || ''),
+        nextDue: formatDateForDisplay(nextDue)
+      };
+    }
+    return null;
+  } catch (err) {
+    // Don't block the page render on lookup failure.
+    Logger.log('lookupLastCompletion failed: ' + err.message);
+    return null;
+  }
+}
+
+function formatDateForDisplay(d) {
+  if (!d) return '';
+  if (d instanceof Date) {
+    return Utilities.formatDate(d, Session.getScriptTimeZone(), 'MMMM d, yyyy');
+  }
+  return String(d);
 }
 
 function include(filename) {
@@ -49,7 +162,7 @@ function include(filename) {
 
 function getUserEmail() {
   try {
-    const email = Session.getActiveUser().getEmail();
+    const email = resolveUserEmail();
     if (!email) {
       return { success: false, error: 'Could not verify your Workspace identity. Please sign in with your organization account.' };
     }
@@ -66,12 +179,12 @@ function getUserEmail() {
 
 function submitTraining(formData) {
   try {
-    const userEmail = Session.getActiveUser().getEmail();
+    const userEmail = resolveUserEmail();
     if (!userEmail) {
-      throw new Error('Identity verification failed. Please refresh and sign in again.');
+      throw new Error('Identity verification failed. Please refresh and sign in again with a Google Workspace account, or enable TEST_MODE in Code.gs for local testing.');
     }
 
-    const required = ['firstName', 'lastName', 'role', 'sensitive', 'fti', 'supervisorEmail', 'signature'];
+    const required = ['firstName', 'lastName', 'role', 'sensitiveDataAccess', 'ftiAccess', 'supervisorEmail', 'signature'];
     for (let i = 0; i < required.length; i++) {
       if (!formData[required[i]] || String(formData[required[i]]).trim() === '') {
         throw new Error('Missing required field: ' + required[i]);
@@ -100,15 +213,15 @@ function submitTraining(formData) {
       formData.firstName,                   // C: First Name
       formData.lastName,                    // D: Last Name
       formData.role,                        // E: Role
-      formData.sensitive,                   // F: Handles sensitive data?
-      formData.fti,                         // G: FTI access?
+      formData.sensitiveDataAccess,         // F: Handles sensitive data?
+      formData.ftiAccess,                   // G: FTI access?
       formData.supervisorEmail,             // H: Supervisor email
       now,                                  // I: Training date
       CONFIG.TRAINING_VERSION,              // J: Version
       'Acknowledged',                       // K: Confirmation
       PRS_STATEMENTS.join(' | '),           // L: PRS text
       formData.signature,                   // M: Signature
-      formData.rating || '',                // N: Rating (optional)
+      formData.qualityRating || '',         // N: Rating (optional)
       '',                                   // O: Next due (formula in sheet)
       '',                                   // P: Status (formula in sheet)
       formData.notes || '',                 // Q: Notes
@@ -169,7 +282,7 @@ function buildCertificateHtml(formData, userEmail, certificateId, completionDate
     '<div class="cert-divider"></div>' +
     '<div class="cert-recipient-label">Awarded To</div>' +
     '<h2 class="cert-recipient">' + fullName + '</h2>' +
-    '<p class="cert-body-text">has successfully completed the <strong>' + CONFIG.AGENCY_NAME + ' Annual Sensitive Data Training (v' + CONFIG.TRAINING_VERSION + ')</strong>, in accordance with applicable federal and state requirements including the Privacy Act of 1974, applicable state privacy laws, HIPAA, and IRS Publication 1075. The recipient has signed the Personal Responsibility Statement and is authorized to handle sensitive information consistent with their assigned role.</p>' +
+    '<p class="cert-body-text">has successfully completed the <strong>' + CONFIG.AGENCY_NAME + ' Annual Sensitive Data Training (v' + CONFIG.TRAINING_VERSION + ')</strong>, in accordance with applicable federal and state safeguarding requirements, including NIST 800-53 Awareness and Training (AT) family controls and the sector-specific frameworks governing the data the recipient handles. The recipient has signed the Personal Responsibility Statement and is authorized to handle sensitive information consistent with their assigned role.</p>' +
     '<div class="cert-footer-grid">' +
     '<div class="cert-footer-card"><div class="cert-footer-label">Certificate ID</div><div class="cert-footer-value">' + certificateId + '</div></div>' +
     '<div class="cert-footer-card"><div class="cert-footer-label">Completion Date</div><div class="cert-footer-value">' + dateStr + '</div></div>' +
@@ -241,11 +354,11 @@ function testCertificateGeneration() {
     firstName: 'Test',
     lastName: 'User',
     role: 'Developer',
-    sensitive: 'Yes',
-    fti: 'No',
+    sensitiveDataAccess: 'Yes',
+    ftiAccess: 'No',
     supervisorEmail: 'supervisor@your-agency.gov',
     signature: 'Test User',
-    rating: '5',
+    qualityRating: '5',
     notes: 'Test run from script editor'
   };
 

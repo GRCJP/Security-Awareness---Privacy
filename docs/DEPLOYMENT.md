@@ -8,6 +8,46 @@ End-to-end deployment from clone to live URL. Plan for ~30 minutes.
 - Permission to create Apps Script projects, Drive folders, and Sites in the target domain
 - Basic familiarity with the Apps Script editor
 
+> **Identity capture & Workspace SSO:** This platform uses `Session.getActiveUser().getEmail()` to capture user identity automatically. That call returns a real email **only when the visitor is signed into a Google Workspace account in the same domain as the script owner**. On personal Gmail, in cross-domain scenarios, or in unauthenticated contexts, it returns an empty string and form submissions will fail with "Identity verification failed."
+>
+> This is intentional — Workspace SSO is what makes the audit trail trustworthy for compliance use. But it does mean you cannot fully test the end-to-end flow on a personal Gmail account out of the box.
+>
+> For local testing or demo deployments without a Workspace account, see **Testing locally** below.
+
+---
+
+## Testing locally (without Workspace)
+
+If you're testing on a personal Gmail account or any context where Workspace SSO isn't available, enable test mode at the top of `Code.gs`:
+
+```javascript
+const TEST_MODE = {
+  enabled: true,                              // ← change to true
+  fallbackEmail: 'test@your-agency.gov'       // ← any email you want recorded for tests
+};
+```
+
+When `TEST_MODE.enabled` is true and the script can't resolve a real Workspace identity, it falls back to `TEST_MODE.fallbackEmail`. This lets you:
+
+- Walk through the full training flow end-to-end
+- Verify form submission writes to the tracker sheet
+- Verify certificate PDF generation
+- Verify confirmation emails get sent
+- Capture screenshots for portfolio or documentation purposes
+
+**Important — disable before any real rollout:**
+
+```javascript
+const TEST_MODE = {
+  enabled: false,    // ← MUST be false in production
+  ...
+};
+```
+
+In production, no-email must fail loudly. A fake email in a real tracker breaks the audit trail and defeats the purpose of identity-verified training.
+
+---
+
 ## Step 1 — Drive folder structure (5 min)
 
 In Google Drive, create:
@@ -196,6 +236,9 @@ For an agency of a few hundred staff, the daily reminder + escalation volume is 
 
 ## Troubleshooting
 
+**"Identity verification failed" on form submission**
+The script can't read a Workspace email for the current user. Most often this means you're testing on a personal Gmail account, or the deployment's "Execute as" / "Who has access" settings don't allow the visitor's identity to surface to the script. For testing, enable `TEST_MODE` at the top of `Code.gs` (see "Testing locally" near the top of this guide). For production, ensure the script and the visitor are in the same Workspace domain and the deployment is set to "Execute as: User accessing the web app."
+
 **"Sorry, the file you have requested does not exist."**
 The deployment URL is wrong, or the deployment has been deleted. Check Deploy → Manage deployments.
 
@@ -208,8 +251,8 @@ Check that `CONFIG.CERTIFICATES_FOLDER_ID` is set to a valid Drive folder ID and
 **Email doesn't arrive**
 Check the Apps Script quota for `MailApp.sendEmail` (default is 100/day for consumer Gmail, 1500/day for Workspace). Check spam folder.
 
-**Tracker shows phantom rows**
-The Status formula might be using bounded ranges (`I2:I1000`) instead of unbounded (`I2:I`). Use unbounded.
+**Tracker shows phantom rows / submissions land at row 1001 instead of row 2**
+The Status formula in column P (and possibly the Next Due formula in column O) is using bounded ranges like `I2:I1000` instead of unbounded `I2:I`. Bounded ranges cause `getLastRow()` to return the last row of the formula range (1000) rather than the last row with actual data, so `appendRow` writes below the formula range. Fix: edit the formulas in O2 and P2 to use unbounded ranges (`I2:I` not `I2:I1000`), then select rows 2 through 1000 and delete them. New submissions will land at the next available row. See `docs/SHEET_SCHEMA.md` for the correct formulas.
 
 **Sheet writes fail intermittently**
 Apps Script has a 6-minute execution timeout. If certificate generation is slow (large folder, slow Drive), consider moving cert generation to a separate trigger called from a queue.

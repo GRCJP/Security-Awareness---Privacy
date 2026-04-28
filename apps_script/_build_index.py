@@ -154,7 +154,7 @@ ART_AI_RISK = '''<svg viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg"><
 ART_EMAIL_RISK = '''<svg viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg"><rect x="40" y="34" width="160" height="92" rx="4" fill="#FFFFFF" stroke="#A87A52" stroke-width="2"/><polyline points="40,34 120,90 200,34" fill="none" stroke="#A87A52" stroke-width="2"/><polyline points="40,126 90,84 40,42" fill="none" stroke="#A87A52" stroke-width="0.8" opacity="0.5"/><polyline points="200,126 150,84 200,42" fill="none" stroke="#A87A52" stroke-width="0.8" opacity="0.5"/><circle cx="180" cy="124" r="26" fill="#A94442"/><line x1="170" y1="114" x2="190" y2="134" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/><line x1="190" y1="114" x2="170" y2="134" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/></svg>'''
 
 # Penalties: gavel + cell bars + IRC code reference (more specific than scale)
-ART_PENALTIES = '''<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="40" width="68" height="100" fill="#1F2630"/><rect x="28" y="50" width="6" height="80" fill="#E5C7A3"/><rect x="42" y="50" width="6" height="80" fill="#E5C7A3"/><rect x="56" y="50" width="6" height="80" fill="#E5C7A3"/><rect x="70" y="50" width="6" height="80" fill="#E5C7A3"/><rect x="20" y="40" width="68" height="8" fill="#A87A52"/><rect x="20" y="132" width="68" height="8" fill="#A87A52"/><g transform="translate(118, 50) rotate(-25)"><rect x="0" y="20" width="50" height="14" rx="2" fill="#A87A52"/><rect x="-8" y="14" width="14" height="26" rx="3" fill="#1F2630"/><rect x="46" y="34" width="6" height="50" fill="#A87A52"/></g><rect x="116" y="106" width="60" height="36" fill="none" stroke="#A87A52" stroke-width="2"/><text x="146" y="132" fill="#A87A52" font-family="serif" font-size="22" font-weight="700" text-anchor="middle">$$</text><g transform="translate(186, 38)"><rect x="0" y="0" width="44" height="60" rx="3" fill="none" stroke="#A87A52" stroke-width="2"/><text x="22" y="20" fill="#A87A52" font-family="monospace" font-size="8" font-weight="700" text-anchor="middle">IRC</text><text x="22" y="34" fill="#A87A52" font-family="monospace" font-size="7" text-anchor="middle">§7213</text><line x1="6" y1="42" x2="38" y2="42" stroke="#A87A52" stroke-width="1"/><text x="22" y="54" fill="#A87A52" font-family="monospace" font-size="7" text-anchor="middle">§7431</text></g><text x="120" y="166" fill="#A94442" font-family="sans-serif" font-size="9" font-weight="700" text-anchor="middle" letter-spacing="0.1em">PERSONAL</text></svg>'''
+ART_PENALTIES = '''<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="40" width="68" height="100" fill="#1F2630"/><rect x="28" y="50" width="6" height="80" fill="#E5C7A3"/><rect x="42" y="50" width="6" height="80" fill="#E5C7A3"/><rect x="56" y="50" width="6" height="80" fill="#E5C7A3"/><rect x="70" y="50" width="6" height="80" fill="#E5C7A3"/><rect x="20" y="40" width="68" height="8" fill="#A87A52"/><rect x="20" y="132" width="68" height="8" fill="#A87A52"/><g transform="translate(118, 50) rotate(-25)"><rect x="0" y="20" width="50" height="14" rx="2" fill="#A87A52"/><rect x="-8" y="14" width="14" height="26" rx="3" fill="#1F2630"/><rect x="46" y="34" width="6" height="50" fill="#A87A52"/></g><rect x="116" y="106" width="60" height="36" fill="none" stroke="#A87A52" stroke-width="2"/><text x="146" y="132" fill="#A87A52" font-family="serif" font-size="22" font-weight="700" text-anchor="middle">$$</text><g transform="translate(186, 38)"><rect x="0" y="0" width="44" height="60" rx="3" fill="none" stroke="#A87A52" stroke-width="2"/><text x="22" y="20" fill="#A87A52" font-family="monospace" font-size="8" font-weight="700" text-anchor="middle">IRC</text><text x="22" y="34" fill="#A87A52" font-family="monospace" font-size="7" text-anchor="middle">800-53</text><line x1="6" y1="42" x2="38" y2="42" stroke="#A87A52" stroke-width="1"/><text x="22" y="54" fill="#A87A52" font-family="monospace" font-size="7" text-anchor="middle">AT-1..4</text></g><text x="120" y="166" fill="#A94442" font-family="sans-serif" font-size="9" font-weight="700" text-anchor="middle" letter-spacing="0.1em">PERSONAL</text></svg>'''
 
 # Build hero photo block
 def hero(slug, eyebrow, title, subtitle, svg_bg):
@@ -274,7 +274,7 @@ sections.append(f'''
           <option value="No">No</option>
           <option value="Unsure">Unsure</option>
         </select>
-        <div class="help-text">FTI is tax data from the IRS or secondary sources (SSA, BFS, CMS). FTI access is governed separately under IRS Pub 1075 and triggers additional reporting requirements.</div>
+        <div class="help-text">FTI is tax data from the IRS or secondary sources. FTI access is governed by additional federal requirements and triggers extra reporting and recertification controls.</div>
         <div class="field-error" id="ftiAccess-error" role="alert"></div>
       </div>
       <div class="form-group">
@@ -342,7 +342,7 @@ sections.append(f'''
       </div>
 
       <h3>Why it matters at the agency</h3>
-      <p class="body-text">Federal and state laws &mdash; the Privacy Act of 1974, applicable state privacy laws, HIPAA, and others &mdash; set strict requirements for handling PII, FTI, PHI, and SSA data. IRS Publication 1075 and SSA security requirements layer on top with additional standards for confidentiality, integrity, and availability.</p>
+      <p class="body-text">Federal and state laws &mdash; the Privacy Act of 1974, applicable state privacy laws, HIPAA, and sector-specific frameworks &mdash; set strict requirements for handling sensitive data. NIST 800-53 controls form the baseline; sector frameworks (tax, healthcare, criminal justice, education, controlled unclassified information) layer additional requirements on top.</p>
 
       <div class="callout callout-info">
         <p><strong>The bottom line:</strong> as agency employees and contractors, we hold sensitive information about thousands of constituents. Data privacy isn't a checkbox &mdash; it's the foundation of public trust in everything we do.</p>
@@ -428,7 +428,7 @@ sections.append(f'''
         </div>
         <div class="data-card">
           <div class="data-card-label">Federal Tax Information (FTI)</div>
-          <div class="data-card-text">Tax data we receive from the IRS or secondary sources like SSA. Has its own dedicated rulebook (IRS Pub 1075).</div>
+          <div class="data-card-text">Tax data received from the IRS or secondary sources. Governed by a dedicated federal framework with stricter controls than general PII.</div>
         </div>
         <div class="data-card">
           <div class="data-card-label">Protected Health Info (PHI)</div>
@@ -634,7 +634,7 @@ sections.append(f'''
   <section class="step card" data-step-name="Interacting With FTI">
     {hero('fti', 'Module 2 &middot; Section 2 of 5', 'Interacting with Federal Tax Information', 'FTI carries the strictest handling rules of any data we touch.', SVG_FORMS)}
     <div class="card-body">
-      <p class="body-text">Federal Tax Information (FTI) is data we receive from the IRS or authorized secondary sources like SSA, BFS, or CMS. Like PII, FTI must be encrypted, access-controlled, and securely stored. But FTI carries additional rules under <strong>IRS Publication 1075</strong> &mdash; the most prescriptive data-handling framework in our environment.</p>
+      <p class="body-text">Federal Tax Information (FTI) is data received from the IRS or authorized secondary sources. Like PII, FTI must be encrypted, access-controlled, and securely stored &mdash; but FTI carries additional rules under its dedicated federal framework, often the most prescriptive data-handling requirements in an agency's environment.</p>
 
       <div class="cream-block">
         <div class="cream-block-art">{ART_FTI_SOURCE}</div>
@@ -656,17 +656,17 @@ sections.append(f'''
         </div>
         <div class="data-card">
           <div class="data-card-label">Strict Third-Party Rules</div>
-          <div class="data-card-text">Contractors and vendors must meet the same standards and have proper agreements (Pub 1075 Exhibit 7) before FTI access.</div>
+          <div class="data-card-text">Contractors and vendors must meet the same standards and have proper agreements in place before FTI access.</div>
         </div>
         <div class="data-card">
           <div class="data-card-label">Immediate Reporting</div>
-          <div class="data-card-text">Any unauthorized access or exposure must be reported to the Information Security Office and escalated to TIGTA and IRS Office of Safeguards.</div>
+          <div class="data-card-text">Any unauthorized access or exposure must be reported to the Information Security Office and escalated to the appropriate federal regulators per the agency's incident response plan.</div>
         </div>
       </div>
 
       <div class="concept-block reverse no-divider">
         <div class="concept-block-text">
-          <p style="margin: 0;">Anything you create from FTI &mdash; sticky notes, screenshots, spreadsheets, meeting notes &mdash; <strong>becomes FTI itself</strong> and inherits all handling rules. Store in approved systems, log access, and dispose per Pub 1075 disposal standards.</p>
+          <p style="margin: 0;">Anything you create from FTI &mdash; sticky notes, screenshots, spreadsheets, meeting notes &mdash; <strong>becomes FTI itself</strong> and inherits all handling rules. Store in approved systems, log access, and dispose per the applicable sanitization standards (typically NIST 800-88).</p>
         </div>
         <div class="concept-block-art">{ART_FTI_NOTES}</div>
       </div>
@@ -690,7 +690,7 @@ sections.append(f'''
         <button type="button" class="scenario-reveal-btn">Reveal Answer &rarr;</button>
         <div class="scenario-answer">
           <div class="scenario-answer-label">Answer</div>
-          <div class="scenario-answer-text"><strong>Not without agency-specific authorization.</strong> Prior clearance doesn't transfer. Contractors need a current Pub 1075 Exhibit 7 agreement, agency-specific access provisioning, this annual training, and a signed PRS &mdash; all in place <em>before</em> first FTI access.</div>
+          <div class="scenario-answer-text"><strong>Not without agency-specific authorization.</strong> Prior clearance doesn't transfer. Contractors need a current contractual agreement, agency-specific access provisioning, this annual training, and a signed PRS &mdash; all in place <em>before</em> first FTI access.</div>
         </div>
       </div>
 
@@ -707,8 +707,8 @@ sections.append('''
   <section class="step card" data-step-name="Privileged FTI Access">
     <div class="card-body">
       <div class="section-eyebrow">Module 2 &middot; Section 3 of 5</div>
-      <h2>If you have privileged FTI access</h2>
-      <p class="lead">DBAs, system administrators, developers, and anyone with backend access to FTI systems carry additional responsibilities under <strong>IRS Pub 1075 AT-3</strong>.</p>
+      <h2>If you have privileged access</h2>
+      <p class="lead">DBAs, system administrators, developers, and anyone with backend access to systems handling regulated data carry additional responsibilities under <strong>NIST 800-53 AT-3</strong> (role-based training) and applicable sector-specific frameworks.</p>
 
       <p class="body-text">Even if you don't view FTI content directly, your role lets you reach it. The IRS treats this as elevated access requiring elevated awareness. Roles change &mdash; if you ever move into one of these positions, this section applies to you.</p>
 
@@ -743,7 +743,7 @@ sections.append('''
 
       <div class="callout callout-warn">
         <p style="font-weight: 600; margin-bottom: 8px;">Privileged access carries elevated personal responsibility.</p>
-        <p>A DBA who runs an unauthorized SELECT on FTI tables &mdash; even out of curiosity &mdash; commits an IRC § 7213A violation. The query logs are reviewed during IRS audits.</p>
+        <p>A DBA who runs an unauthorized SELECT on regulated data tables &mdash; even out of curiosity &mdash; commits a federal disclosure violation. The query logs are reviewed during framework audits.</p>
       </div>
 
       <div class="button-row">
@@ -971,7 +971,7 @@ sections.append(f'''
     <div class="card-body">
       <div class="concept-block">
         <div class="concept-block-text">
-          <p style="margin: 0;">Sensitive data must be disposed of securely to prevent unauthorized access, identity theft, and breaches. Compliance with IRS Pub 1075, HIPAA, and SSA security guidelines requires that sensitive information be made <strong>irretrievable</strong> &mdash; not just deleted from view, but destroyed in a way that prevents recovery.</p>
+          <p style="margin: 0;">Sensitive data must be disposed of securely to prevent unauthorized access, identity theft, and breaches. Compliance with NIST 800-88 sanitization standards and applicable sector frameworks (HIPAA, sector-specific data handling rules) requires that sensitive information be made <strong>irretrievable</strong> &mdash; not just deleted from view, but destroyed in a way that prevents recovery.</p>
         </div>
         <div class="concept-block-art">{ART_DISPOSAL_SHRED}</div>
       </div>
@@ -1136,7 +1136,7 @@ sections.append(f'''
         </div>
         <div class="data-card data-card-alert">
           <div class="data-card-label">Legal Consequences</div>
-          <div class="data-card-text">Civil liability under applicable state privacy laws, HIPAA, and the Privacy Act. Criminal liability under IRC &sect;&sect; 7213, 7213A for FTI violations.</div>
+          <div class="data-card-text">Civil liability under applicable state privacy laws, HIPAA, and the Privacy Act. Criminal liability under federal disclosure statutes for violations involving regulated data.</div>
         </div>
         <div class="data-card data-card-alert">
           <div class="data-card-label">Operational Disruption</div>
@@ -1172,23 +1172,23 @@ sections.append(f'''
         <div class="concept-block-art">{ART_PENALTIES}</div>
       </div>
 
-      <h3>FTI-specific penalties (IRC &sect;&sect; 7213, 7213A, 7431)</h3>
+      <h3>Federal disclosure penalties for regulated data</h3>
 
       <div class="penalty-grid">
         <div class="penalty-card">
           <div class="penalty-stat">5<span class="penalty-stat-unit">yr</span></div>
           <div class="penalty-label">Federal Prison</div>
-          <div class="penalty-text">Up to 5 years for unauthorized disclosure under IRC &sect; 7213.</div>
+          <div class="penalty-text">Up to 5 years for unauthorized disclosure under federal data-disclosure statutes.</div>
         </div>
         <div class="penalty-card">
           <div class="penalty-stat">$5,000</div>
           <div class="penalty-label">Fine</div>
-          <div class="penalty-text">Plus prosecution costs under IRC &sect; 7213.</div>
+          <div class="penalty-text">Plus prosecution costs under applicable federal disclosure statutes.</div>
         </div>
         <div class="penalty-card">
           <div class="penalty-stat">$1,000</div>
           <div class="penalty-label">Per Incident</div>
-          <div class="penalty-text">Civil damages minimum under IRC &sect; 7431, plus punitive if willful.</div>
+          <div class="penalty-text">Civil damages under applicable federal disclosure statutes, plus punitive if willful.</div>
         </div>
       </div>
 
@@ -1199,7 +1199,7 @@ sections.append(f'''
         </div>
         <div class="data-card data-card-alert">
           <div class="data-card-label">Civil &amp; Criminal Penalties</div>
-          <div class="data-card-text">Unauthorized access, misuse, or disclosure can result in heavy fines, criminal charges, and potential imprisonment under the Privacy Act, applicable state privacy laws, HIPAA, and IRS Pub 1075.</div>
+          <div class="data-card-text">Unauthorized access, misuse, or disclosure can result in heavy fines, criminal charges, and potential imprisonment under the Privacy Act, applicable state privacy laws, HIPAA, and sector-specific federal data-handling frameworks.</div>
         </div>
       </div>
 
@@ -1255,7 +1255,7 @@ sections.append(f'''
       <p class="body-text">Use your agency's incident reporting process. Provide as much detail as you can: what you observed, what data is involved, when you noticed, and any actions taken. <strong>If you're unsure who to contact, email the Information Security Office at security@your-agency.gov</strong> &mdash; getting the report in is more important than getting the channel right.</p>
 
       <div class="callout callout-info">
-        <p><strong>For FTI incidents:</strong> the Information Security Office will escalate to TIGTA and the IRS Office of Safeguards within 24 hours of confirmation, per Pub 1075 &sect; 1.8. You don't make those calls yourself &mdash; your job is to report to the Information Security Office promptly.</p>
+        <p><strong>For incidents involving regulated data:</strong> the Information Security Office handles all external escalation to federal regulators within the timelines required by the applicable framework (typically 24-72 hours from confirmation). You don't make those calls yourself &mdash; your job is to report to the Information Security Office promptly.</p>
       </div>
 
       <h3>Try it: a scenario</h3>
@@ -1499,11 +1499,16 @@ sections.append('''
 
 INDEX = ''.join(sections)
 
-# Substitute config placeholders
-INDEX = INDEX.replace('{AGENCY_NAME}', CONFIG['AGENCY_NAME'])
-INDEX = INDEX.replace('{TRAINING_VERSION}', CONFIG['TRAINING_VERSION'])
-INDEX = INDEX.replace('{SECURITY_CONTACT}', CONFIG['SECURITY_CONTACT'])
-INDEX = INDEX.replace('{RECERTIFICATION_DAYS}', str(CONFIG['RECERTIFICATION_DAYS']))
+# Substitute config placeholders. Handle double-braced (from non-f-string sources)
+# first, then single-braced (from f-string evaluation).
+for ph, val in [
+    ('AGENCY_NAME', CONFIG['AGENCY_NAME']),
+    ('TRAINING_VERSION', CONFIG['TRAINING_VERSION']),
+    ('SECURITY_CONTACT', CONFIG['SECURITY_CONTACT']),
+    ('RECERTIFICATION_DAYS', str(CONFIG['RECERTIFICATION_DAYS'])),
+]:
+    INDEX = INDEX.replace('{{' + ph + '}}', val)
+    INDEX = INDEX.replace('{' + ph + '}', val)
 
 with open('Index.html', 'w') as f:
     f.write(INDEX)
