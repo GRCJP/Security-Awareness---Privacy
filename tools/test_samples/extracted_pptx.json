@@ -1,0 +1,76 @@
+{
+  "source": {
+    "filename": "sample_training.pptx",
+    "type": "pptx",
+    "pages": 5
+  },
+  "title": "Annual Sensitive Data Training",
+  "sections": [
+    {
+      "level": 1,
+      "heading": "Annual Sensitive Data Training",
+      "body": [
+        "FY 2026 — Required for all staff with access to sensitive systems"
+      ],
+      "bullets": [],
+      "page": 1
+    },
+    {
+      "level": 1,
+      "heading": "What is Sensitive Data?",
+      "body": [
+        "Five categories require special protection:"
+      ],
+      "bullets": [
+        "Personally Identifiable Information (PII)",
+        "Federal Tax Information (FTI)",
+        "Protected Health Information (PHI)",
+        "Social Security Administration (SSA) data",
+        "Financial / business sensitive records"
+      ],
+      "page": 2,
+      "notes": "Emphasize that mishandling any of these creates real harm to real people. The legal consequences for the agency and the individual are severe. This is not a paperwork exercise."
+    },
+    {
+      "level": 1,
+      "heading": "Need to Know Principle",
+      "body": [
+        "Access is granted by job function, not seniority.",
+        "Even with general clearance, only access specific records your role requires.",
+        "Curiosity is not a need-to-know. Past relationships are not a need-to-know.",
+        "Every access is logged. Federal auditors review access logs."
+      ],
+      "bullets": [],
+      "page": 3,
+      "notes": "Real example: a state worker in 2023 was prosecuted under IRC 7213A for looking up the tax records of a celebrity case. Curiosity was the only motive. The conviction stood."
+    },
+    {
+      "level": 1,
+      "heading": "Reporting Incidents",
+      "body": [
+        "The 24-hour rule:",
+        "When you suspect a problem, the clock starts immediately.",
+        "You don't need certainty before reporting. Just report.",
+        "False alarms are fine. Silence is not.",
+        "Contact the Information Security Office through the agency's incident reporting process."
+      ],
+      "bullets": [],
+      "page": 4
+    },
+    {
+      "level": 1,
+      "heading": "Personal Liability Under IRC",
+      "body": [
+        "Federal law assigns personal liability:"
+      ],
+      "bullets": [
+        "IRC §7213: up to 5 years federal prison + $5,000 fine",
+        "IRC §7213A: up to 1 year prison + $1,000 fine for unauthorized inspection",
+        "IRC §7431: civil damages, minimum $1,000 per incident",
+        "Plus: termination, loss of clearance, permanent ineligibility for federal work"
+      ],
+      "page": 5,
+      "notes": "Make clear: these penalties follow the individual, not the employer. The agency cannot indemnify employees against criminal liability for unauthorized disclosure."
+    }
+  ]
+}

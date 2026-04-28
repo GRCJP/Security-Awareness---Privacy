@@ -1,0 +1,85 @@
+{
+  "source": {
+    "filename": "sample_training.docx",
+    "type": "docx",
+    "pages": null
+  },
+  "title": "Annual Data Privacy Training",
+  "sections": [
+    {
+      "level": 1,
+      "heading": "Annual Data Privacy Training",
+      "body": [
+        "This training is required for all employees and contractors with access to sensitive data."
+      ],
+      "bullets": [],
+      "page": null
+    },
+    {
+      "level": 1,
+      "heading": "Module 1: What Is Data Privacy",
+      "body": [
+        "Data privacy refers to the rules governing how we collect, use, store, and share information about individuals.",
+        "Federal and state laws set strict requirements for handling Personally Identifiable Information (PII), Federal Tax Information (FTI), Protected Health Information (PHI), and Social Security Administration (SSA) data."
+      ],
+      "bullets": [],
+      "page": null
+    },
+    {
+      "level": 2,
+      "heading": "Why It Matters",
+      "body": [
+        "Each record we hold represents a real person who trusted us with sensitive information. When data is mishandled:"
+      ],
+      "bullets": [
+        "Individuals can be harmed by identity theft, fraud, and exposure of personal information.",
+        "The agency faces regulatory fines, civil settlements, and loss of public trust.",
+        "Federal agencies may suspend or terminate the agency's access to FTI.",
+        "Individual employees may face personal civil and criminal liability."
+      ],
+      "page": null
+    },
+    {
+      "level": 1,
+      "heading": "Module 2: Handling Sensitive Data",
+      "body": [
+        "Five categories of data are treated as sensitive at our agency. Each has specific rules but they share common principles."
+      ],
+      "bullets": [],
+      "page": null
+    },
+    {
+      "level": 2,
+      "heading": "Need to Know",
+      "body": [
+        "Access is granted based on job function, not seniority or personal interest. Even with general clearance, employees should access only the specific records required for their assigned tasks."
+      ],
+      "bullets": [],
+      "page": null
+    },
+    {
+      "level": 2,
+      "heading": "Secure Transmission",
+      "body": [
+        "Sensitive data must never be sent through unapproved channels. This includes:"
+      ],
+      "bullets": [
+        "Personal email accounts (Gmail, Yahoo, etc.)",
+        "Text messages or chat applications",
+        "Public AI tools (ChatGPT, Claude.ai consumer)",
+        "Personal cloud storage (Dropbox, iCloud)"
+      ],
+      "page": null
+    },
+    {
+      "level": 1,
+      "heading": "Module 3: Reporting Incidents",
+      "body": [
+        "If you suspect any unauthorized access, disclosure, or loss of sensitive data, report it immediately. The 24-hour reporting clock starts when you suspect a problem, not when you have all the details.",
+        "False alarms are fine. Silence is not."
+      ],
+      "bullets": [],
+      "page": null
+    }
+  ]
+}

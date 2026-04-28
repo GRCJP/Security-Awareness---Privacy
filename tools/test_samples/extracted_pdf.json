@@ -1,0 +1,163 @@
+{
+  "source": {
+    "filename": "sample_pub1075_excerpt.pdf",
+    "type": "pdf",
+    "pages": 3
+  },
+  "title": "(anonymous)",
+  "sections": [
+    {
+      "level": 1,
+      "heading": "PUBLICATION 1075 EXCERPT — TAX INFORMATION SECURITY",
+      "body": [
+        "GUIDELINES This is a representative excerpt for testing content extraction. The actual IRS Publication 1075 is freely available at irs.gov/pub/irs-pdf/p1075.pdf."
+      ],
+      "bullets": [],
+      "page": 1
+    },
+    {
+      "level": 1,
+      "heading": "1.0 INTRODUCTION",
+      "body": [],
+      "bullets": [],
+      "page": 1
+    },
+    {
+      "level": 2,
+      "heading": "1.1 General",
+      "body": [
+        "Federal, state, and local agencies that receive Federal Tax Information (FTI) are required to safeguard that information in accordance with Internal Revenue Code section 6103. This publication describes the safeguards required of agencies receiving FTI.",
+        "Agencies must implement administrative, physical, and technical safeguards designed to protect the confidentiality of FTI. Failure to maintain adequate safeguards may result in suspension or termination of FTI access."
+      ],
+      "bullets": [],
+      "page": 1
+    },
+    {
+      "level": 2,
+      "heading": "1.2 Overview of Publication 1075",
+      "body": [
+        "Publication 1075 establishes the safeguarding requirements for agencies that receive FTI. The publication addresses requirements in the following areas:",
+        " Recordkeeping requirements  Secure storage of FTI  Restricting access to authorized personnel  Reporting safeguard activities to the IRS  Disposing of FTI when no longer needed  Computer system security requirements"
+      ],
+      "bullets": [],
+      "page": 1
+    },
+    {
+      "level": 1,
+      "heading": "2.0 RECORDKEEPING REQUIREMENTS",
+      "body": [],
+      "bullets": [],
+      "page": 1
+    },
+    {
+      "level": 2,
+      "heading": "2.1 Federal Tax Information Logs",
+      "body": [
+        "Agencies must maintain logs documenting the receipt, use, and disposition of all FTI received. Logs must capture: the date FTI was requested and received; the taxpayer identifier; tax year(s) covered;",
+        "type of information; reason for the request; the exact location where the FTI is stored; who has access to the FTI; the disposition date; and the disposition method."
+      ],
+      "bullets": [],
+      "page": 1
+    },
+    {
+      "level": 1,
+      "heading": "3.0 RESTRICTING ACCESS TO FTI",
+      "body": [],
+      "bullets": [],
+      "page": 1
+    },
+    {
+      "level": 2,
+      "heading": "3.1 Need to Know",
+      "body": [
+        "Access to FTI must be restricted to those agency employees and contractors who require access to perform their official duties. The principle of least privilege must be applied — employees should have access only to the specific FTI required for their assigned tasks."
+      ],
+      "bullets": [],
+      "page": 1
+    },
+    {
+      "level": 2,
+      "heading": "3.2 Background Investigations",
+      "body": [
+        "All agency personnel with access to FTI must undergo background investigations consistent with the sensitivity of the information they will access. Contractors granted access to FTI are subject to the same background investigation requirements as agency employees."
+      ],
+      "bullets": [],
+      "page": 2
+    },
+    {
+      "level": 1,
+      "heading": "4.0 EMPLOYEE AWARENESS AND TRAINING",
+      "body": [],
+      "bullets": [],
+      "page": 2
+    },
+    {
+      "level": 2,
+      "heading": "4.1 Annual Training Requirement",
+      "body": [
+        "Each agency must provide annual security awareness training to all employees and contractors with access to FTI. Training must address: the requirements of IRC section 6103; civil and criminal penalties for unauthorized disclosure under IRC sections 7213, 7213A, and 7431; agency-specific procedures for safeguarding FTI; and the requirement to report any suspected unauthorized access or disclosure."
+      ],
+      "bullets": [],
+      "page": 2
+    },
+    {
+      "level": 2,
+      "heading": "4.2 Personal Responsibility Statement",
+      "body": [
+        "Each employee and contractor with access to FTI must sign a Personal Responsibility Statement (PRS) annually. The PRS must affirm that the individual has completed the required training and understands their obligations regarding the safeguarding of FTI."
+      ],
+      "bullets": [],
+      "page": 2
+    },
+    {
+      "level": 1,
+      "heading": "5.0 DISPOSAL OF FTI",
+      "body": [],
+      "bullets": [],
+      "page": 2
+    },
+    {
+      "level": 2,
+      "heading": "5.1 Approved Methods",
+      "body": [
+        "FTI must be disposed of in a manner that prevents reconstruction. Approved methods for paper FTI include: shredding using crosscut or microcut shredders; pulping; burning to white ash; or chemical decomposition. Approved methods for digital FTI follow NIST Special Publication 800-88 guidelines for media sanitization."
+      ],
+      "bullets": [],
+      "page": 2
+    },
+    {
+      "level": 1,
+      "heading": "6.0 PENALTIES FOR UNAUTHORIZED DISCLOSURE",
+      "body": [],
+      "bullets": [],
+      "page": 2
+    },
+    {
+      "level": 2,
+      "heading": "6.1 IRC Section 7213",
+      "body": [
+        "Unauthorized disclosure of FTI by federal employees, state employees, or contractors is a felony punishable by a fine of up to five thousand dollars, imprisonment of up to five years, or both, plus the costs of prosecution. Conviction also results in dismissal from federal employment."
+      ],
+      "bullets": [],
+      "page": 2
+    },
+    {
+      "level": 2,
+      "heading": "6.2 IRC Section 7213A",
+      "body": [
+        "Unauthorized inspection of returns or return information is a misdemeanor punishable by a fine of up to one thousand dollars, imprisonment of up to one year, or both, plus the costs of prosecution."
+      ],
+      "bullets": [],
+      "page": 2
+    },
+    {
+      "level": 2,
+      "heading": "6.3 IRC Section 7431",
+      "body": [
+        "Taxpayers may bring a civil action against any person who knowingly or by reason of negligence inspects or discloses any return or return information. The minimum civil damages are one thousand dollars per act of unauthorized inspection or disclosure, or actual damages plus punitive damages if the violation was willful."
+      ],
+      "bullets": [],
+      "page": 3
+    }
+  ]
+}

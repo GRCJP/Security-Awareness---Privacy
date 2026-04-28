@@ -1,0 +1,21 @@
+# Local build artifacts
+*.pyc
+__pycache__/
+.DS_Store
+Thumbs.db
+
+# Local secrets / agency-specific configs (never commit)
+.env
+.env.local
+*_b64.txt
+config.local.*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
